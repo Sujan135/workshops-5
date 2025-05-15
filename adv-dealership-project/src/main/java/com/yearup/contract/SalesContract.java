@@ -45,11 +45,11 @@ public class SalesContract extends Contract{
             monthlyPayment = 0;
             return 0;
         }
-        double principle = getTotalPrice();
+        double principal = getTotalPrice();
         double interestRate;
         int months;
 
-        if (principle > 10000) {
+        if (principal > 10000) {
             interestRate = 0.0425 / 12;
             months = 48;
         } else {
@@ -57,7 +57,7 @@ public class SalesContract extends Contract{
             months = 24;
         }
 
-        monthlyPayment = (principle * interestRate) / (1 - Math.pow(1 + interestRate, -months));
+        monthlyPayment = (principal * interestRate) / (1 - Math.pow(1 + interestRate, -months));
         return  monthlyPayment;
 
     }
