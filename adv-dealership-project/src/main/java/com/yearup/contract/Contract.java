@@ -1,4 +1,6 @@
-package com.yearup.dealership;
+package com.yearup.contract;
+
+import com.yearup.dealership.Vehicle;
 
 public abstract class Contract {
     private String date;
