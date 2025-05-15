@@ -24,8 +24,10 @@ public class UserInterface {
                     processAllVehiclesRequest();
                     break;
                 case 2:
+                    processVehiclesByPriceRange();
                     break;
                 case 3:
+                    processVehiclesByMakeModel();
                     break;
                 case 4:
                     System.out.println("Exiting..");
@@ -72,4 +74,28 @@ public class UserInterface {
             System.out.println("Dealership not found.");
         }
     }
+
+    private void processVehiclesByPriceRange() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter minimum price: ");
+        double minPrice = scanner.nextDouble();
+        System.out.println("Enter maximum price: ");
+        double maxPrice = scanner.nextDouble();
+
+        List<Vehicle> filtered = dealership.getVehiclesByPrice(minPrice, maxPrice);
+        displayVehicles(filtered);
+
+    }
+    private void processVehiclesByMakeModel() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter make: ");
+        String make = scanner.nextLine();
+        System.out.println("Enter model: ");
+        String model = scanner.nextLine();
+
+        List<Vehicle> filtered = dealership.getVehiclesByMakeModel(make, model);
+        displayVehicles(filtered);
+
+    }
+
 }
