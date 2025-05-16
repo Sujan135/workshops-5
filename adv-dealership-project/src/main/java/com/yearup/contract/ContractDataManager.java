@@ -2,6 +2,9 @@ package com.yearup.contract;
 
 import com.yearup.dealership.Vehicle;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class ContractDataManager {
@@ -38,6 +41,33 @@ public class ContractDataManager {
 
         } else  if (contract instanceof LeaseContract) {
             LeaseContract lease = (LeaseContract) contract;
+            Vehicle v = lease.getVehicle();
+
+            line.append(String.format("LEASE|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|%.2f|%.2f",
+                    lease.getDate(),
+                    lease.getCustomerName(),
+                    lease.getCustomerEmail(),
+                    v.getVin(),
+                    v.getYear(),
+                    v.getMake(),
+                    v.getModel(),
+                    v.getType(),
+                    v.getColor(),
+                    v.getOdometer(),
+                    v.getPrice(),
+                    lease.getExpectedEndingValue(),
+                    lease.getLeaseFee(),
+                    lease.getMonthlyPayment()
+                    ));
+        }
+
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+            writer.write(line.toString());
+            writer.newLine();
+        } catch (IOException e ) {
+            e.printStackTrace();
         }
 
     }
